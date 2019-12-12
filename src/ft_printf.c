@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/10 19:18:24 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:46:42 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,35 @@ void	ft_initialize(t_printf *data)
 	data->minus_flag = 0;
 }
 
-//void	ft_conversion(va_list args)
+void	handle_flags(const char *format, t_printf *data)
+{
+	if (*format == 'c')
+		print_char(data, (int)va_arg(data->args, int));
+	else if (*format == 's')
+		print_string(data, (char *)va_arg(data->args, char *));
+	else if (*format == 'd' || *format == 'i')
+		print_integer(data, (int)va_arg(data->args, int));
+	/*else if (*format == 'u')
+		print_unsigned_int(va_arg(args, unsigned int));
+	else if ()*/
+}
 
-int	ft_printf(const char *format, ...)
+int		parse(const char *format, t_printf *data)
+{
+	int cont;
+
+	cont = 0;
+	printf("\n%s", format++);
+	cont += check_flags(format, data);
+	printf("\n%s", format);
+	cont += check_width(format, data);
+	printf("\n%s", format);
+	//cont += check_precision();
+	handle_flags(format, data);
+	return (cont);
+}
+
+int		ft_printf(const char *format, ...)
 {
 	int count;
 	t_printf *data;
@@ -36,17 +62,7 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-		{
-			//handle_flags(format + 1, data);
-			//handle_width();
-			//handle_precision();
-			//conversion(&++format);
-			format++;
-			if (*format == 'i')
-			{
-				print_integer(data->args);
-			}
-		}
+			count += parse(++format, data);
 		else
 		{
 			ft_putchar_fd(*format, 1);
@@ -60,6 +76,7 @@ int	ft_printf(const char *format, ...)
 
 int main(void)
 {
-	ft_printf("hola%i");
+	//printf("%01000d",  1234);
+	ft_printf("hola%-231c", 'd');
 	return (0);
 }

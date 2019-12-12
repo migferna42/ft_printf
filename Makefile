@@ -38,7 +38,7 @@ LIB_FILES	=	ft_atoi.c		\
 
 SRC_DIR = 		src/
 SRC_FILES =		ft_printf.c 	\
-				handle_flags.c	\
+				check_flags.c	\
 				print_string.c	\
 				print_integer.c
 
@@ -61,10 +61,10 @@ $(NAME):
 			@$(CC) -c $(FLAGS) $(SRC) $(LIB) $(LFLAGS)
 			@$(AR) $(NAME) $(OBJS)
 clean:		
-	$(RM) $(OBJS)
+		@$(RM) $(OBJS)
 
 fclean:	clean
-
+		@$(RM) $(NAME)
 re: fclean clean
 
 .PHONY: all clean fclean re

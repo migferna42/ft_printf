@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 13:36:42 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/10 18:41:56 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:56:33 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ typedef struct	s_printf
 	int			hast_flag;
 	int			minus_flag;
 	int			plus_flag;
+	int			width;
 }				t_printf;
 
-int	print_integer();
-int	print_string();
+int	check_flags(const char *format, t_printf *data);
+int	check_width(const char *format, t_printf *data);
+int	print_integer(t_printf *data, int number);
+int	print_string(t_printf *data, const char *str);
+int	print_char(t_printf *data, char c);
 
 #endif
