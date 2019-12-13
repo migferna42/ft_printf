@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/12 17:46:42 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:05:17 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,32 @@ void	ft_initialize(t_printf *data)
 	data->minus_flag = 0;
 }
 
-void	handle_flags(const char *format, t_printf *data)
+void	handle_flags(const char *format, int index, t_printf *data)
 {
+	format += index;
 	if (*format == 'c')
 		print_char(data, (int)va_arg(data->args, int));
 	else if (*format == 's')
 		print_string(data, (char *)va_arg(data->args, char *));
-	else if (*format == 'd' || *format == 'i')
+	/*else if (*format == 'd' || *format == 'i')
 		print_integer(data, (int)va_arg(data->args, int));
-	/*else if (*format == 'u')
+	else if (*format == 'u')
 		print_unsigned_int(va_arg(args, unsigned int));
 	else if ()*/
 }
 
 int		parse(const char *format, t_printf *data)
 {
-	int cont;
+	int index;
 
-	cont = 0;
-	printf("\n%s", format++);
-	cont += check_flags(format, data);
-	printf("\n%s", format);
-	cont += check_width(format, data);
-	printf("\n%s", format);
+	index = 0;
+	ft_initialize(data);
+	index += check_flags(format, index, data);
+	index += check_width(format, index, data);
 	//cont += check_precision();
-	handle_flags(format, data);
-	return (cont);
+	handle_flags(format, index, data);
+
+	return (index);
 }
 
 int		ft_printf(const char *format, ...)
@@ -56,19 +56,23 @@ int		ft_printf(const char *format, ...)
 
 	if (!(data = malloc(sizeof(t_printf))))
 		return (0);
-	ft_initialize(data);
 	count = 0;
 	va_start(data->args, format);
 	while (*format)
 	{
+		count = 0;
 		if (*format == '%')
-			count += parse(++format, data);
+		{
+			count = parse(++format, data);
+			format += (count + 1);
+
+		}
 		else
 		{
 			ft_putchar_fd(*format, 1);
 			count++;
+			format++;
 		}
-		format++;
 	}
 	va_end(data->args);
 	return (count);
@@ -76,7 +80,7 @@ int		ft_printf(const char *format, ...)
 
 int main(void)
 {
-	//printf("%01000d",  1234);
-	ft_printf("hola%-231c", 'd');
+	printf("%04s%5c%7c\n", "Hola", 'b', 'u');
+	ft_printf("%04s%5c%7c\n", "Hola", 'b', 'u');
 	return (0);
 }

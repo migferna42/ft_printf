@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:14:53 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/12 17:05:59 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:04:19 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int	print_char(t_printf *data, char c)
 {
-	printf("hola");
+	if (data->minus_flag == 1)
+		ft_putchar_fd(c, 1);
 	while (--data->width > 0)
 	{
 		if (data->zero_flag == 1)
@@ -24,6 +25,7 @@ int	print_char(t_printf *data, char c)
 		else
 			ft_putchar_fd(' ', 1);
 	}
-	ft_putchar_fd(c, 1);
+	if (data->minus_flag == 0)
+		ft_putchar_fd(c, 1);
 	return (0);
 }

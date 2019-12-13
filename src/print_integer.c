@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/12 17:06:05 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/13 10:35:22 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	print_integer(t_printf *data, int number)
 {
-
+	(void) data;
+	(void) number;
 	return (0);
 }
