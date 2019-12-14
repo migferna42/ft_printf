@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/13 14:49:55 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 13:37:35 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_width(const char *format, int index, t_printf *data)
 
 	pos = 0;
 	number = 0;
-	format = format + index;
+	format += index;
 	while (ft_isdigit(*format))
 	{
 		number *= 10;
@@ -53,5 +53,29 @@ int	check_width(const char *format, int index, t_printf *data)
 		format++;
 	}
 	data->width = number;
+	return (pos);
+}
+
+int	check_precision(const char *format, int index, t_printf *data)
+{
+	int number;
+	int pos;
+
+	pos = 0;
+	number = 0;
+	format += index;
+	if (*format == '.')
+	{
+		format++;
+		pos++;
+		while (ft_isdigit(*format))
+		{
+			number *= 10;
+			number = number + (*format - 48);
+			pos++;
+			format++;
+		}
+		data->precision = number;
+	}
 	return (pos);
 }

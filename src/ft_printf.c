@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 12:42:11 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 15:45:07 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	handle_flags(const char *format, int index, t_printf *data)
 		print_char(data, (int)va_arg(data->args, int));
 	else if (*format == 's')
 		print_string(data, (char *)va_arg(data->args, char *));
-	else if (*format == 'd' || *format == 'i')
+	/*else if (*format == 'd' || *format == 'i')
 		print_integer(data, (int)va_arg(data->args, int));
-	/*else if (*format == 'u')
+	else if (*format == 'p')
+		print_pointer(data, (void *)va_arg(data->args, void *));
+	else if (*format == 'u')
 		print_unsigned_int(va_arg(args, unsigned int));
 	else if ()*/
 }
@@ -43,7 +45,7 @@ int		parse(const char *format, t_printf *data)
 	ft_initialize(data);
 	index += check_flags(format, index, data);
 	index += check_width(format, index, data);
-	//cont += check_precision();
+	index += check_precision(format, index, data);
 	handle_flags(format, index, data);
 
 	return (index);
@@ -79,7 +81,10 @@ int		ft_printf(const char *format, ...)
 
 /*int main(void)
 {
-	printf("%32s %5s%7c%04i%5i\n", "abc", "mundo", 'u', 42, 777);
-	ft_printf("%32s %5s%7c%04i%5i\n", "abc", "mundo", 'u', 42, 777);
+	void *a;
+
+	a = 0;
+	printf("%4.7s%7c\n", "Hola mundo", 'u');
+	ft_printf("%4.7s%7c\n", "Hola mundo", 'u');
 	return (0);
 }*/
