@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/13 16:05:17 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 12:42:11 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	handle_flags(const char *format, int index, t_printf *data)
 		print_char(data, (int)va_arg(data->args, int));
 	else if (*format == 's')
 		print_string(data, (char *)va_arg(data->args, char *));
-	/*else if (*format == 'd' || *format == 'i')
+	else if (*format == 'd' || *format == 'i')
 		print_integer(data, (int)va_arg(data->args, int));
-	else if (*format == 'u')
+	/*else if (*format == 'u')
 		print_unsigned_int(va_arg(args, unsigned int));
 	else if ()*/
 }
@@ -65,7 +65,6 @@ int		ft_printf(const char *format, ...)
 		{
 			count = parse(++format, data);
 			format += (count + 1);
-
 		}
 		else
 		{
@@ -78,9 +77,9 @@ int		ft_printf(const char *format, ...)
 	return (count);
 }
 
-int main(void)
+/*int main(void)
 {
-	printf("%04s%5c%7c\n", "Hola", 'b', 'u');
-	ft_printf("%04s%5c%7c\n", "Hola", 'b', 'u');
+	printf("%32s %5s%7c%04i%5i\n", "abc", "mundo", 'u', 42, 777);
+	ft_printf("%32s %5s%7c%04i%5i\n", "abc", "mundo", 'u', 42, 777);
 	return (0);
-}
+}*/
