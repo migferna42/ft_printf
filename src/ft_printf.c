@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 15:45:07 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:12:40 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		ft_printf(const char *format, ...)
 	void *a;
 
 	a = 0;
-	printf("%4.7s%7c\n", "Hola mundo", 'u');
-	ft_printf("%4.7s%7c\n", "Hola mundo", 'u');
+	printf("hello, %s.\n", "gavin");
+	ft_printf("hello, %s.", "gavin");
 	return (0);
 }*/

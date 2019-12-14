@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 13:37:35 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:15:10 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	check_precision(const char *format, int index, t_printf *data)
 			pos++;
 			format++;
 		}
+		data->precision_flag = 1;
 		data->precision = number;
 	}
 	return (pos);

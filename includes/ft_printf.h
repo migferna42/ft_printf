@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 13:36:42 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 13:04:40 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 16:52:02 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_printf
 	int			hast_flag;
 	int			minus_flag;
 	int			plus_flag;
+	int			precision_flag;
 	int			width;
 	int			precision;
 }				t_printf;
