@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 19:15:10 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:29:53 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	check_width(const char *format, int index, t_printf *data)
 {
 	int number;
 	int pos;
+
 
 	pos = 0;
 	number = 0;

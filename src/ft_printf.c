@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 19:12:40 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:34:30 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int		parse(const char *format, t_printf *data)
 	index += check_width(format, index, data);
 	index += check_precision(format, index, data);
 	handle_flags(format, index, data);
-
 	return (index);
 }
 
@@ -84,7 +83,7 @@ int		ft_printf(const char *format, ...)
 	void *a;
 
 	a = 0;
-	printf("hello, %s.\n", "gavin");
-	ft_printf("hello, %s.", "gavin");
+	printf("%3s%3s\n", "hello", "world");
+	ft_printf("%3s%3s", "hello", "world");
 	return (0);
 }*/
