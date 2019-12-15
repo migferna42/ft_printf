@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 19:29:53 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/15 10:55:47 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	check_precision(const char *format, int index, t_printf *data)
 	format += index;
 	if (*format == '.')
 	{
+		data->zero_flag = 1;
 		format++;
 		pos++;
 		while (ft_isdigit(*format))

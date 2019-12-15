@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/14 19:34:30 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/15 19:12:55 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	handle_flags(const char *format, int index, t_printf *data)
 		print_char(data, (int)va_arg(data->args, int));
 	else if (*format == 's')
 		print_string(data, (char *)va_arg(data->args, char *));
-	/*else if (*format == 'd' || *format == 'i')
+	else if (*format == 'd' || *format == 'i')
 		print_integer(data, (int)va_arg(data->args, int));
-	else if (*format == 'p')
+	/*else if (*format == 'p')
 		print_pointer(data, (void *)va_arg(data->args, void *));
 	else if (*format == 'u')
 		print_unsigned_int(va_arg(args, unsigned int));
@@ -81,9 +81,11 @@ int		ft_printf(const char *format, ...)
 /*int main(void)
 {
 	void *a;
+	char *s_hidden;
 
+	s_hidden = "hi low\0don't print me lol\0";
 	a = 0;
-	printf("%3s%3s\n", "hello", "world");
-	ft_printf("%3s%3s", "hello", "world");
+	//printf("%3.s", s_hidden);
+	ft_printf("%3.s", s_hidden);
 	return (0);
 }*/
