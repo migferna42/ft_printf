@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/15 19:12:55 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/16 13:13:10 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	ft_initialize(t_printf *data)
 	data->hast_flag = 0;
 	data->plus_flag = 0;
 	data->minus_flag = 0;
+	data->width = 0;
+	data->precision_flag = 0;
+	data->precision = 0;
 }
 
 void	handle_flags(const char *format, int index, t_printf *data)
@@ -37,55 +40,57 @@ void	handle_flags(const char *format, int index, t_printf *data)
 	else if ()*/
 }
 
-int		parse(const char *format, t_printf *data)
+int		parse(const char *format, t_printf **data)
 {
 	int index;
 
 	index = 0;
-	ft_initialize(data);
-	index += check_flags(format, index, data);
-	index += check_width(format, index, data);
-	index += check_precision(format, index, data);
-	handle_flags(format, index, data);
+	ft_initialize(*data);
+	index += check_flags(format, index, *data);
+	index += check_width(format, index, *data);
+	index += check_precision(format, index, *data);
+	printf("%d", (*data)->width);
+	handle_flags(format, index, *data);
+	index = index + 1;
 	return (index);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	int count;
+	int it;
 	t_printf *data;
 
 	if (!(data = malloc(sizeof(t_printf))))
 		return (0);
+	it = 0;
 	count = 0;
 	va_start(data->args, format);
 	while (*format)
 	{
-		count = 0;
+		//count = 0;
 		if (*format == '%')
 		{
-			count = parse(++format, data);
-			format += (count + 1);
+			format++;
+			it = parse(format, &data);
+			format += it;
 		}
 		else
 		{
 			ft_putchar_fd(*format, 1);
-			count++;
+			it++;
 			format++;
 		}
+		count = count + it;
 	}
 	va_end(data->args);
 	return (count);
 }
 
-/*int main(void)
+int main(void)
 {
-	void *a;
-	char *s_hidden;
 
-	s_hidden = "hi low\0don't print me lol\0";
-	a = 0;
-	//printf("%3.s", s_hidden);
-	ft_printf("%3.s", s_hidden);
+	//printf("%d", printf("%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c\n",' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~',''));
+	printf("%d", ft_printf("%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c",' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~',''));
 	return (0);
-}*/
+}
