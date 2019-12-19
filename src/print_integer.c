@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-t_printf	*print_integer(t_printf *data)
+t_printf	*ft_print_integer(t_printf *data)
 {
 	/*if (data->minus_flag == 1)
 		ft_putnbr_fd(number, 1);*/

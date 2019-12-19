@@ -35,7 +35,7 @@ t_printf	*check_flags(t_printf *data)
 
 t_printf	*check_width(t_printf *data)
 {
-	while (data->treat[data->it] >= '0' && data->treat[data->it] <= '9')
+	while (ft_isdigit(data->format[data->it]))
 	{
 		data->width *= 10;
 		data->width += (data->treat[data->it] - 48);

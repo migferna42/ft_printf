@@ -15,5 +15,8 @@
 
 void	ft_display(t_printf *data, char c, int width)
 {
-	write(1, &c, 1);
+	(void)data;
+	data->length += width;
+	while (width-- > 0)
+		write(1, &c, 1);
 }

@@ -37,9 +37,9 @@ typedef struct	s_printf
 t_printf	*check_flags(t_printf *data);
 t_printf	*check_width(t_printf *data);
 t_printf	*check_precision(t_printf *data);
-t_printf	*print_integer(t_printf *data);
-t_printf	*print_string(t_printf *data);
-t_printf	*print_char(t_printf *data);
+t_printf	*ft_print_integer(t_printf *data);
+t_printf	*ft_print_string(t_printf *data);
+t_printf	*ft_print_char(t_printf *data);
 void		ft_display(t_printf *data, char c, int width);
 
 #endif

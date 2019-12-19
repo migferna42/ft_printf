@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-t_printf	*print_char(t_printf *data)
+t_printf	*ft_print_char(t_printf *data)
 {
 	/*int count;
 	int width;
@@ -34,12 +34,12 @@ t_printf	*print_char(t_printf *data)
 		ft_putchar_fd(c, 1);
 	return (0);*/
 	//wint_t	c;
+	
 
 	char c;
-
 	c = (char)va_arg(data->args, int);
 	//c = (wint_t)c;
-	if (data->zero_flag == 1 && data->minus_flag != 0)
+	if (data->zero_flag == 1 && data->minus_flag == 0)
 		ft_display(data, '0', data->width - 1);
 	else if(data->minus_flag == 0)
 		ft_display(data, ' ', data->width - 1);

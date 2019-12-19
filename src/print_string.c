@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-t_printf	*print_string(t_printf *data)
+t_printf	*ft_print_string(t_printf *data)
 {
 	/*int len;
 	char *cpy;
