@@ -6,15 +6,14 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 14:56:40 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/19 17:13:47 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:14:13 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	display(t_printf *data, char c, int width)
+void	ft_display(t_printf *data, char c, int width)
 {
-	(void)data;
-	//write(1, "x", 1);
+	write(1, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/19 17:35:30 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:17:26 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	handle_flags(t_printf *data)
 int		procesate(t_printf *data)
 {
 	data->it++;
-	//check_flags(data);
+	check_flags(data);
 	check_width(data);
-	//check_precision(data);
+	check_precision(data);
 	handle_flags(data);
 	return (data->length);
 }
@@ -101,7 +101,7 @@ int		ft_printf(const char *format, ...)
 int main(void)
 {
 	//printf("%d", printf("%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c\n",' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~',''));
-	ft_printf("%1c%2c",'x','b');
+	ft_printf("%c",'x');
 	//printf("%d", printf("%1c%2c",'a', 'b'));
 	return (0);
 }

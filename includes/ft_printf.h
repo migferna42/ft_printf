@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 13:36:42 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/19 18:10:53 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 18:31:05 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_printf	*check_precision(t_printf *data);
 t_printf	*print_integer(t_printf *data);
 t_printf	*print_string(t_printf *data);
 t_printf	*print_char(t_printf *data);
-void		display(t_printf *data, char c, int width);
+void		ft_display(t_printf *data, char c, int width);
 
 #endif

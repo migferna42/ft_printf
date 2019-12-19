@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/19 17:46:34 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 18:38:12 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_printf	*check_flags(t_printf *data)
 
 t_printf	*check_width(t_printf *data)
 {
-	/*while (data->treat[data->it] >= '0' && data->treat[data->it] <= '9')
+	while (data->treat[data->it] >= '0' && data->treat[data->it] <= '9')
 	{
 		data->width *= 10;
 		data->width += (data->treat[data->it] - 48);
 		data->it++;
-	}*/
+	}
 	return (data);
 }
 
