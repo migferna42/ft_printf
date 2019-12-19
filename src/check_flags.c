@@ -6,79 +6,56 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/16 12:58:31 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:46:34 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	check_flags(const char *format, int index, t_printf *data)
+t_printf	*check_flags(t_printf *data)
 {
-	format = format + index;
-	if (*format == '0')
+	if (data->format[data->it] == '0')
 		data->zero_flag = 1;
-	else if (*format == '-')
+	else if (data->format[data->it] == '-')
 	{
 		data->minus_flag = 1;
-		data->zero_flag = 0;
+		//data->zero_flag = 0;
 	}
 	/*else if (*format == '.')
 		data->flags[2] = 1;
 	else if (*format == '*')
 		return ;*/
-	else if (*format == '#')
+	else if (data->format[data->it] == '#')
 		data->hast_flag = 1;
-	else if (*format == '+')
+	else if (data->format[data->it] == '+')
 		data->plus_flag = 1;
-	else
-		return (0);
-	return (1);
+	return (data);
 }
 
-//"%-04d, 21"                             42
-int	check_width(const char *format, int index, t_printf *data)
+t_printf	*check_width(t_printf *data)
 {
-	int number;
-	int pos;
-
-
-	pos = 0;
-	number = 0;
-	format += index;
-	while (ft_isdigit(*format))
+	/*while (data->treat[data->it] >= '0' && data->treat[data->it] <= '9')
 	{
-		number *= 10;
-		number = number + (*format - 48);
-		pos++;
-		format++;
-	}
-	data->width = number;
-	return (pos);
+		data->width *= 10;
+		data->width += (data->treat[data->it] - 48);
+		data->it++;
+	}*/
+	return (data);
 }
 
-int	check_precision(const char *format, int index, t_printf *data)
+t_printf	*check_precision(t_printf *data)
 {
-	int number;
-	int pos;
-
-	pos = 0;
-	number = 0;
-	format += index;
-	if (*format == '.')
+	if (data->format[data->it] == '.')
 	{
-		data->zero_flag = 1;
-		format++;
-		pos++;
-		while (ft_isdigit(*format))
+		data->it++;
+		data->precision = 0;
+		while (ft_isdigit(data->format[data->it]))
 		{
-			number *= 10;
-			number = number + (*format - 48);
-			pos++;
-			format++;
+			data->precision *= 10;
+			data->precision += (data->format[data->it] - 48);
+			data->it++;
 		}
-		data->precision_flag = 1;
-		data->precision = number;
 	}
-	return (pos);
+	return (data);
 }

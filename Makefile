@@ -41,8 +41,8 @@ SRC_FILES =		ft_printf.c 	\
 				check_flags.c	\
 				print_string.c	\
 				print_integer.c \
-				print_char.c
-
+				print_char.c	\
+				ft_display.c
 LIB = $(addprefix $(LIB_DIR), $(LIB_FILES))
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 

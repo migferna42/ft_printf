@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:14:53 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/16 12:16:12 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:45:39 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	print_char(t_printf *data, char c)
+t_printf	*print_char(t_printf *data)
 {
-	int count;
+	/*int count;
+	int width;
 
+	width = data->width;
 	count = 0;
 	if (data->minus_flag == 1)
 		ft_putchar_fd(c, 1);
-	while (data->width != 0 && --data->width > 0)
+	while (data->width != 0 && --width > 0)
 	{
 		if (data->zero_flag == 1)
 			ft_putchar_fd('0', 1);
@@ -30,5 +32,17 @@ int	print_char(t_printf *data, char c)
 	}
 	if (data->minus_flag == 0)
 		ft_putchar_fd(c, 1);
-	return (0);
+	return (0);*/
+	//wint_t	c;
+
+	//c = (char)va_arg(data->args, int);
+	//c = (wint_t)c;
+	if (data->zero_flag == 1 && data->minus_flag != 0)
+		display(data, '0', data->width - 1);
+	else if(data->minus_flag == 0)
+		display(data, 'b', data->width - 1);
+	//write(1, &c, 1);
+	/*if(data->minus_flag == 1)
+		display(data, ' ', data->width - 1);*/
+	return (data);
 }

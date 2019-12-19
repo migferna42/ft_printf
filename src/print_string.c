@@ -6,16 +6,16 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:39:40 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/15 19:09:07 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/19 14:32:53 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	print_string(t_printf *data, char *str)
+t_printf	*print_string(t_printf *data)
 {
-	int len;
+	/*int len;
 	char *cpy;
 
 	if (!str)
@@ -37,14 +37,14 @@ int	print_string(t_printf *data, char *str)
 		ft_putstr_fd(str, 1);
 	while (len-- > 0)
 	{
-		/*if (data->zero_flag == 1)
-			ft_putchar_fd('0', 1);*/
+		if (data->zero_flag == 1)
+			ft_putchar_fd('0', 1);
 		//else
 			ft_putchar_fd(' ', 1);
 	}
 	if (data->minus_flag == 0 &&
 		!(data->precision_flag == 1 && data->precision == 0
 ))
-		ft_putstr_fd(str, 1);
-	return (0);
+		ft_putstr_fd(str, 1);*/
+	return (data);
 }
