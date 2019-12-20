@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:39:40 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 11:59:38 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/20 12:37:48 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ t_printf	*ft_print_string(t_printf *data)
 		s = ft_strdup("(null)");
 	else if (!s && data->precision > -1)
 	{
-		cpy = ft_strdup("");
+		cpy = ft_strdup("(null)");
+		s = cpy;
 		ft_strlcpy(cpy, s, data->precision + 1);
 		s = cpy;
 	}
