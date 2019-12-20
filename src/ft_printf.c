@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 12:39:25 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/20 15:05:51 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ void	handle_flags(t_printf *data)
 		ft_print_char(data);
 	else if (data->format[data->it] == 's')
 		ft_print_string(data);
-	//else if (*format == 'd' || *format == 'i')
-	//	print_integer(data, (int)va_arg(data->args, int));
+	else if (data->format[data->it] == 'd' || data->format[data->it] == 'i')
+		ft_print_integer(data);
+	else if (data->format[data->it] == 'u')
+		ft_print_unsigned(data);
 
 	/*else if (*format == 'p')
 		print_pointer(data, (void *)va_arg(data->args, void *));

@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 10:36:57 by migferna         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:27:49 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_printf	*ft_print_integer(t_printf *data)
 	if (data->minus_flag == 0)
 		ft_putnbr_fd(number, 1);*/
 	int num;
-	int num_length;
+	int length;
 
 	num = va_arg(data->args, int);
-	num_length = ft_strlen(ft_itoa(num));
+	length = ft_strlen(ft_itoa(num));
 	return (data);
 }
