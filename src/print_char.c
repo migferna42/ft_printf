@@ -16,26 +16,6 @@
 
 t_printf	*ft_print_char(t_printf *data)
 {
-	/*int count;
-	int width;
-
-	width = data->width;
-	count = 0;
-	if (data->minus_flag == 1)
-		ft_putchar_fd(c, 1);
-	while (data->width != 0 && --width > 0)
-	{
-		if (data->zero_flag == 1)
-			ft_putchar_fd('0', 1);
-		else
-			ft_putchar_fd(' ', 1);
-	}
-	if (data->minus_flag == 0)
-		ft_putchar_fd(c, 1);
-	return (0);*/
-	//wint_t	c;
-	
-
 	char c;
 	c = (char)va_arg(data->args, int);
 	//c = (wint_t)c;

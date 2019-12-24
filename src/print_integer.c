@@ -13,6 +13,23 @@
 #include "libft.h"
 #include "ft_printf.h"
 
+static int ft_numlen(int number)
+{
+	int length;
+
+	if (number < 0)
+		number *= -1;
+	length = 1;
+	while ((number /= 10) > 0)
+		length++;
+	return (length);
+}
+
+static int	ft_isnegative(int number)
+{
+	return (number < 0 ? 1 : 0);
+}
+
 t_printf	*ft_print_integer(t_printf *data)
 {
 	int num;
@@ -20,13 +37,26 @@ t_printf	*ft_print_integer(t_printf *data)
 	int spaces;
 
 	num = va_arg(data->args, int);
-	length = ft_strlen(ft_itoa(num));
+	length = ft_numlen(num);
+	if (data->zero_flag == 1  && data->precision == -1)
+	{
+		data->precision = data->width;
+		if (num < 0)
+			data->precision--;
+	}
 	spaces = length;
 	if ( length <= data->precision && data->precision > -1 )
 		spaces = data->precision;
+	if (ft_isnegative(num))
+		spaces++;
 	if (data->minus_flag == 0)
 		ft_display(data, ' ', data->width - spaces);
-	ft_display(data, '0', data->precision - data->width);
+	if (ft_isnegative(num))
+	{
+		num *= -1;
+		write(1, "-", 1);
+	}
+	ft_display(data, '0', data->precision - length);
 	ft_putnbr_fd(num, 1);
 	if (data->minus_flag == 1)
 		ft_display(data, ' ', data->width - spaces);
