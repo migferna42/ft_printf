@@ -17,7 +17,7 @@ t_printf	*check_flags(t_printf *data)
 {
 	if (data->format[data->it] == '0' && data->it++)
 		data->zero_flag = 1;
-	else if (data->format[data->it] == '-' && data->it++)
+	if (data->format[data->it] == '-' && data->it++)
 	{
 		data->minus_flag = 1;
 		//data->zero_flag = 0;
@@ -26,9 +26,9 @@ t_printf	*check_flags(t_printf *data)
 		data->flags[2] = 1;
 	else if (*format == '*')
 		return ;*/
-	else if (data->format[data->it] == '#' && data->it++)
+	if (data->format[data->it] == '#' && data->it++)
 		data->hast_flag = 1;
-	else if (data->format[data->it] == '+' && data->it++)
+	if (data->format[data->it] == '+' && data->it++)
 		data->plus_flag = 1;
 	return (data);
 }

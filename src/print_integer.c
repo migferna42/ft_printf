@@ -38,6 +38,11 @@ t_printf	*ft_print_integer(t_printf *data)
 
 	num = va_arg(data->args, int);
 	length = ft_numlen(num);
+	if (num == 0 && data->precision == 0)
+	{
+		ft_display(data, ' ', data->width);
+		return (data);
+	}
 	if (data->zero_flag == 1  && data->precision == -1)
 	{
 		data->precision = data->width;
