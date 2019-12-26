@@ -17,28 +17,44 @@ static int		ft_get_length(unsigned int number)
 {
 	int length;
 
-	length = 0;
 	if (number < 0)
 		number *= -1;
+	length = 1;
 	while ((number /= 10) > 0)
 		length++;
 	return (length);
+}
+
+void	ft_putnbruint(unsigned int number, int fd)
+{
+	if (number > 9)
+		ft_putnbruint(number / 10, fd);
+	ft_putchar_fd((number % 10) + '0', fd);
 }
 
 t_printf		*ft_print_unsigned(t_printf *data)
 {
 	unsigned int num;
 	int length;
+	int spaces;
 
-	num = va_arg(data->args, unsigned int);
+	num = (unsigned int)va_arg(data->args, unsigned int);
 	length = ft_get_length(num);
-	if (length <= data->precision)
-		length = data->precision;
+	if (num == 0 && data->precision == 0)
+	{
+		ft_display(data, ' ', data->width);
+		return (data);
+	}
+	if (data->zero_flag == 1 && data->precision == -1)
+		data->precision = data->width;
+	spaces = length;
+	if (spaces <= data->precision)
+		spaces = data->precision;
 	if (data->minus_flag == 0)
-		ft_display(data, ' ', data->width - length - 1);
-	ft_display(data, '0', data->precision - data->width);
-	ft_putnbr_fd(num, 1);
+		ft_display(data, ' ', data->width - spaces);
+	ft_display(data, '0', data->precision - length);
+	ft_putnbruint(num, 1);
 	if (data->minus_flag == 1)
-		ft_display(data, ' ', data->width - length - 1);
+		ft_display(data, ' ', data->width - spaces);
 	return (data);
 }
