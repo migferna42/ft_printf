@@ -45,12 +45,10 @@ void	handle_flags(t_printf *data)
 		ft_print_integer(data);
 	else if (data->format[data->it] == 'u')
 		ft_print_unsigned(data);
-
-	/*else if (*format == 'p')
-		print_pointer(data, (void *)va_arg(data->args, void *));
-	else if (*format == 'u')
-		print_unsigned_int(va_arg(args, unsigned int));
-	else if ()*/
+	else if (data->format[data->it] == 'p')
+		ft_print_pointer(data);
+	else if (data->format[data->it] == '%')
+		ft_print_percent(data);
 }
 
 int		procesate(t_printf *data)
@@ -102,8 +100,9 @@ int		ft_printf(const char *format, ...)
 
 /*int main(void)
 {
+	char a;
 	//printf("%.03s", NULL);
-	ft_printf("%.03s", NULL);
+	ft_printf("%p", &a);
 
 	return (0);
 }*/
