@@ -43,6 +43,6 @@ t_printf	*ft_print_char(t_printf *data);
 t_printf	*ft_print_unsigned(t_printf *data);
 t_printf	*ft_print_pointer(t_printf *data);
 t_printf	*ft_print_percent(t_printf *data);
-void		ft_display(t_printf *data, char c, int width);
+void		ft_display(t_printf *data, char c, int width, int update);
 
 #endif

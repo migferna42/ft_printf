@@ -13,11 +13,12 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	ft_display(t_printf *data, char c, int width)
+void	ft_display(t_printf *data, char c, int width, int update)
 {
 	if (width > 0)
 	{
-		data->length += width;
+		if (update)
+			data->length += width;
 		while (width-- > 0)
 			write(1, &c, 1);
 	}

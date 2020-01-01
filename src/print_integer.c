@@ -40,7 +40,7 @@ t_printf	*ft_print_integer(t_printf *data)
 	length = ft_numlen(num);
 	if (num == 0 && data->precision == 0)
 	{
-		ft_display(data, ' ', data->width);
+		ft_display(data, ' ', data->width, 1);
 		return (data);
 	}
 	if (data->zero_flag == 1  && data->precision == -1)
@@ -54,16 +54,17 @@ t_printf	*ft_print_integer(t_printf *data)
 		spaces = data->precision;
 	if (ft_isnegative(num))
 		spaces++;
+	data->length += (data->width < spaces) ? spaces : data->width;
 	if (data->minus_flag == 0)
-		ft_display(data, ' ', data->width - spaces);
+		ft_display(data, ' ', data->width - spaces, 0);
 	if (ft_isnegative(num))
 	{
 		num *= -1;
 		write(1, "-", 1);
 	}
-	ft_display(data, '0', data->precision - length);
+	ft_display(data, '0', data->precision - length, 0);
 	ft_putnbr_fd(num, 1);
 	if (data->minus_flag == 1)
-		ft_display(data, ' ', data->width - spaces);
+		ft_display(data, ' ', data->width - spaces, 0);
 	return (data);
 }

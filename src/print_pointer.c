@@ -63,10 +63,11 @@ t_printf *ft_print_pointer(t_printf *data)
 		data->width = 0;
 	}
 	spaces = ft_strlen(str) + 2;
+	data->length += (data->width < spaces) ? spaces : data->width;
 	if (data->minus_flag == 0)
-		ft_display(data, ' ', data->width - spaces);
+		ft_display(data, ' ', data->width - spaces, 1);
 	ft_putstr_fd("0x", 1);
-	ft_display(data, '0', (data->precision - spaces) + 2);
+	ft_display(data, '0', (data->precision - spaces) + 2, 1);
 	ft_putstr_fd(str, 1);
 	return (data);
 }
