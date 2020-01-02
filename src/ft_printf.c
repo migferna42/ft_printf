@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 15:05:51 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/02 18:51:48 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	handle_flags(t_printf *data)
 		ft_print_unsigned(data);
 	else if (data->format[data->it] == 'p')
 		ft_print_pointer(data);
+	else if (data->format[data->it] == 'x')
+		ft_print_hexadecimal(data);
 	else if (data->format[data->it] == '%')
 		ft_print_percent(data);
 }

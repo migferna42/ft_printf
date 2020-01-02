@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 13:36:42 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 16:49:28 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/02 18:49:42 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_printf	*ft_print_string(t_printf *data);
 t_printf	*ft_print_char(t_printf *data);
 t_printf	*ft_print_unsigned(t_printf *data);
 t_printf	*ft_print_pointer(t_printf *data);
+t_printf	*ft_print_hexadecimal(t_printf *data);
 t_printf	*ft_print_percent(t_printf *data);
 void		ft_display(t_printf *data, char c, int width, int update);
 

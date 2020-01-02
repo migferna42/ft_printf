@@ -44,6 +44,7 @@ SRC_FILES =		ft_printf.c 	\
 				print_char.c	\
 				print_unsigned.c \
 				print_pointer.c \
+				print_hexadecimal.c \
 				print_percent.c \
 				ft_display.c
 LIB = $(addprefix $(LIB_DIR), $(LIB_FILES))
