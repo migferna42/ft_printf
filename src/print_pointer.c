@@ -23,7 +23,7 @@ static int	ft_length_number(int number, int base)
 	return (lenght);
 }
 
-static char	*ft_itoa_base(int number, int base)
+static char	*ft_itoa_base(uintmax_t number, int base)
 {
 	char	*str;
 	int		length;
@@ -31,28 +31,32 @@ static char	*ft_itoa_base(int number, int base)
 
 	if (number == 0)
 		return (ft_strdup("0"));
-	length = ft_length_number(number, 16);
+	length = ft_length_number(number, 16) + 2;
 	str = malloc(sizeof(char) * length + 1);
 	if (!str)
 		return (NULL);
-	str[length--] = '\0';
+	str[length] = '\0';
 	while (number)
 	{
-		str[length--] = base_string[number % base];
+		str[--length] = base_string[number % base];
+		//printf("\nNumero: %c|%li", str[length], number);
 		number /= base;
 	}
+	//printf("\nPrimer caracter: %c", str[0]);
 	return (str);
 }
 
 
 t_printf *ft_print_pointer(t_printf *data)
 {
-	unsigned int	num;
+	uintmax_t	num;
 	char			*str;
 	int				spaces;
 
-	num = va_arg(data->args, unsigned int);
+	num = va_arg(data->args, unsigned long);
+	num = (uintmax_t)num;
 	str = ft_itoa_base(num, 16);
+
 	if (!str)
 		return (NULL);
 	if (num == 0 && data->precision == 0)
