@@ -15,6 +15,10 @@
 
 t_printf	*check_flags(t_printf *data)
 {
+	while (	data->format[data->it] == '0' ||
+			data->format[data->it] == '+' ||
+			data->format[data->it] == '-' )
+	{
 	if (data->format[data->it] == '0' && data->it++)
 		data->zero_flag = 1;
 	if (data->format[data->it] == '-' && data->it++)
@@ -30,6 +34,7 @@ t_printf	*check_flags(t_printf *data)
 		data->hast_flag = 1;
 	if (data->format[data->it] == '+' && data->it++)
 		data->plus_flag = 1;
+	}
 	return (data);
 }
 

@@ -54,7 +54,7 @@ void	handle_flags(t_printf *data)
 int		procesate(t_printf *data)
 {
 	data->it++;
-	check_flags(data);	
+	check_flags(data);
 	check_width(data);
 	check_precision(data);
 	handle_flags(data);
