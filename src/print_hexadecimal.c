@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:39:35 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/02 20:30:22 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/02 20:39:32 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static int	ft_nbrlen(unsigned int number, int base)
 	return (length);
 }
 
-static char	*ft_itoa_base(unsigned int number, int base)
+static char	*ft_itoa_base(unsigned int number, int base, char c)
 {
 	char *str;
 	int length;
-	char	*base_string = "0123456789abcdef";
-
+	char	*base_string_minus = "0123456789abcdef";
+	char	*base_string_mayus = "0123456789ABCDEF";
+	char	*base_selected;
+	
 	if (number == 0)
 		return (ft_strdup("0"));
 	length = ft_nbrlen(number, base);
@@ -38,16 +40,16 @@ static char	*ft_itoa_base(unsigned int number, int base)
 	if (!str)
 		return (NULL);
 	str[length] = '\0';
+	base_selected = (c == 'x') ? base_string_minus : base_string_mayus;
 	while (number)
 	{
-		str[--length] = base_string[number % base];
+		str[--length] = base_selected[number % base];
 		number /= base;
 	}
 	return (str);
 }
 
-t_printf *ft_print_hexadecimal(t_printf *data)
-{
+t_printf *ft_print_hexadecimal(t_printf *data, char c){
 	char	*str;
 	unsigned long num;
 	int width;
@@ -64,7 +66,7 @@ t_printf *ft_print_hexadecimal(t_printf *data)
 		ft_display(data, ' ', data->width, 1);
 		return (data);
 	}
-	str = ft_itoa_base(num, 16);
+	str = ft_itoa_base(num, 16, c);
 	width = ft_strlen(str);
 	spaces = (data->precision > 0 && data->precision >= width) ? data->precision : width;
 	data->length += (data->width < spaces) ? spaces : data->width;
