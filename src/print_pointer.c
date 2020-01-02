@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	ft_length_number(int number, int base)
+static int	ft_length_number(uintmax_t number, int base)
 {
 	int lenght;
 
@@ -31,7 +31,7 @@ static char	*ft_itoa_base(uintmax_t number, int base)
 
 	if (number == 0)
 		return (ft_strdup("0"));
-	length = ft_length_number(number, 16) + 2;
+	length = ft_length_number(number, 16);
 	str = malloc(sizeof(char) * length + 1);
 	if (!str)
 		return (NULL);
@@ -39,10 +39,8 @@ static char	*ft_itoa_base(uintmax_t number, int base)
 	while (number)
 	{
 		str[--length] = base_string[number % base];
-		//printf("\nNumero: %c|%li", str[length], number);
 		number /= base;
 	}
-	//printf("\nPrimer caracter: %c", str[0]);
 	return (str);
 }
 
