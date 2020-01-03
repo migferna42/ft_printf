@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/20 12:15:01 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/03 17:49:05 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@ t_printf	*check_flags(t_printf *data)
 {
 	while (	data->format[data->it] == '0' ||
 			data->format[data->it] == '+' ||
-			data->format[data->it] == '-' )
+			data->format[data->it] == '-' ||
+			data->format[data->it] == '*')
 	{
 	if (data->format[data->it] == '0' && data->it++)
 		data->zero_flag = 1;
-	if (data->format[data->it] == '-' && data->it++)
-	{
+	else if (data->format[data->it] == '-' && data->it++)
 		data->minus_flag = 1;
-		//data->zero_flag = 0;
-	}
-	/*else if (*format == '.')
-		data->flags[2] = 1;
-	else if (*format == '*')
-		return ;*/
-	if (data->format[data->it] == '#' && data->it++)
+	else if (data->format[data->it] == '*' && data->it++)
+		data->asterisk_flag = 1;
+	else if (data->format[data->it] == '#' && data->it++)
 		data->hast_flag = 1;
-	if (data->format[data->it] == '+' && data->it++)
+	else if (data->format[data->it] == '+' && data->it++)
 		data->plus_flag = 1;
 	}
 	return (data);
@@ -40,6 +36,16 @@ t_printf	*check_flags(t_printf *data)
 
 t_printf	*check_width(t_printf *data)
 {
+	if (data->asterisk_flag == 1)
+	{
+		data->width = va_arg(data->args, int);
+		if (data->width < 0)
+		{
+			data->minus_flag = 1;
+			data->width *= -1;
+		}
+		return (data);
+	}
 	while (ft_isdigit(data->format[data->it]))
 	{
 		data->width *= 10;
@@ -56,6 +62,14 @@ t_printf	*check_precision(t_printf *data)
 	{
 		data->it++;
 		data->precision = 0;
+		if (data->format[data->it] == '*')
+		{
+			data->precision = va_arg(data->args, int);
+			data->it++;
+			if (data->precision < 0)
+				data->precision = -1;
+			return (data);
+		}
 		while (ft_isdigit(data->format[data->it]))
 		{
 			data->precision *= 10;

@@ -6,14 +6,14 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/02 17:41:51 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 00:47:21 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int ft_numlen(int number)
+static int ft_numlen(long int number)
 {
 	int length;
 
@@ -25,14 +25,14 @@ static int ft_numlen(int number)
 	return (length);
 }
 
-static int	ft_isnegative(int number)
+static int	ft_isnegative(long int number)
 {
 	return (number < 0 ? 1 : 0);
 }
 
 t_printf	*ft_print_integer(t_printf *data)
 {
-	int num;
+	long int num;
 	int length;
 	int spaces;
 
@@ -43,7 +43,7 @@ t_printf	*ft_print_integer(t_printf *data)
 		ft_display(data, ' ', data->width, 1);
 		return (data);
 	}
-	if (data->zero_flag == 1  && data->precision == -1)
+	if (data->zero_flag == 1  && data->precision == -1 && data->minus_flag == 0)
 	{
 		data->precision = data->width;
 		if (num < 0)

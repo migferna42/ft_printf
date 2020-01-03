@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 09:56:23 by migferna          #+#    #+#             */
-/*   Updated: 2019/12/05 15:18:15 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/03 18:16:17 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
-void			ft_putnbr_fd(int n, int fd);
+void			ft_putnbr_fd(long int n, int fd);
 
 #endif
