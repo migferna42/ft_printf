@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/03 17:39:21 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 01:11:19 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int		procesate(t_printf *data)
 
 int		parse(t_printf *data)
 {
+	if (data->it == (int)ft_strlen(data->format) - 1)
+		return (0);
 	while (data->copy[data->it] != '\0')
 	{
 		if (data->copy[data->it] == '%')

@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/03 17:49:05 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 01:08:21 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ t_printf	*check_width(t_printf *data)
 	{
 		data->width *= 10;
 		data->width += (data->treat[data->it] - 48);
+		//printf("%d", data->it);
+		if (data->it == (int)ft_strlen(data->format) - 1)
+			break;
 		data->it++;
 	}
 
