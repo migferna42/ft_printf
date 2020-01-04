@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 13:15:19 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/02 18:32:04 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 01:28:02 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_printf *ft_print_pointer(t_printf *data)
 		return (NULL);
 	if (num == 0 && data->precision == 0)
 		*str = '\0';
-	if (data->zero_flag == 1 && data->precision == 1)
+	if (data->zero_flag == 1 && data->precision == 1 && data->minus_flag == 0)
 	{
 		data->precision = data->width - 2;
 		data->width = 0;

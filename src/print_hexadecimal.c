@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:39:35 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:22:00 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 01:34:34 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,15 @@ t_printf *ft_print_hexadecimal(t_printf *data, char c){
 	int spaces;
 
 	num = va_arg(data->args, unsigned long);
-	if (data->zero_flag == 1 && data->precision == -1)
-	{
+	if (data->zero_flag == 1 && data->precision == -1 && data->minus_flag == 0)
 		data->precision = data->width;
-		data->width = 0;
-	}
 	if (num == 0 && data->precision == 0)
 	{
 		ft_display(data, ' ', data->width, 1);
 		return (data);
 	}
-	str = ft_itoa_base(num, 16, c);
+	if (!(str = ft_itoa_base(num, 16, c)))
+		return (NULL);
 	width = ft_strlen(str);
 	spaces = (data->precision > 0 && data->precision >= width) ? data->precision : width;
 	data->length += (data->width < spaces) ? spaces : data->width;

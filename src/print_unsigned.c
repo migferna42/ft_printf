@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 15:06:40 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/02 17:42:04 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/04 01:29:31 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_printf		*ft_print_unsigned(t_printf *data)
 		ft_display(data, ' ', data->width, 1);
 		return (data);
 	}
-	if (data->zero_flag == 1 && data->precision == -1)
+	if (data->zero_flag == 1 && data->precision == -1 && data->minus_flag == 0)
 		data->precision = data->width;
 	spaces = length;
 	if (spaces <= data->precision)
