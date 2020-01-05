@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/05 03:42:25 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/05 23:44:34 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,30 @@ static int	ft_isnegative(long int number)
 	return (number < 0 ? 1 : 0);
 }
 
+static long int get_length(t_printf *data)
+{
+	long int num;
+
+	if (ft_strcmp(data->length_flag, "hh") == 0)
+		num = (signed char)(va_arg(data->args, int));
+	else if (ft_strcmp(data->length_flag, "l") == 0)
+		num = (long)(va_arg(data->args, long int));
+	else if (ft_strcmp(data->length_flag, "h") == 0)
+		num = (short)(va_arg(data->args, int));
+	else if (ft_strcmp(data->length_flag, "ll") == 0)
+		num = (long long)(va_arg(data->args, long long int));
+	else
+		num = va_arg(data->args, int);
+	return (num);
+}
+
 t_printf	*ft_print_integer(t_printf *data)
 {
 	long int num;
 	int length;
 	int spaces;
 
-	num = va_arg(data->args, int);
+	num = get_length(data);
 	length = ft_numlen(num);
 	if (num == 0 && data->precision == 0)
 	{
@@ -65,7 +82,7 @@ t_printf	*ft_print_integer(t_printf *data)
 	else if (data->plus_flag == 1)
 		write(1, "+", 1);
 	ft_display(data, '0', data->precision - length, 0);
-	ft_putnbr_fd(num, 1);
+	ft_putnbrlong_fd(num, 1);
 	if (data->minus_flag == 1)
 		ft_display(data, ' ', data->width - spaces, 0);
 	return (data);

@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/05 03:29:12 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/05 19:50:27 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_printf	*check_flags(t_printf *data)
 	while (	data->format[data->it] == '0' ||
 			data->format[data->it] == '+' ||
 			data->format[data->it] == '-' ||
-			data->format[data->it] == '*')
+			data->format[data->it] == '*' ||
+			data->format[data->it] == ' ')
 	{
 	if (data->format[data->it] == '0' && data->it++)
 		data->zero_flag = 1;
@@ -32,6 +33,8 @@ t_printf	*check_flags(t_printf *data)
 		data->hast_flag = 1;
 	else if (data->format[data->it] == '+' && data->it++)
 		data->plus_flag = 1;
+	else if (data->format[data->it] == ' ' && data->it++)
+		data->space_flag = 1;
 	}
 	return (data);
 }
@@ -80,6 +83,28 @@ t_printf	*check_precision(t_printf *data)
 			data->precision *= 10;
 			data->precision += (data->format[data->it] - 48);
 			data->it++;
+		}
+	}
+	return (data);
+}
+
+t_printf	*check_length(t_printf *data)
+{
+	int i;
+
+	i = 0;
+	while (	data->format[data->it] == 'l' ||
+			data->format[data->it] == 'h')
+	{
+		if (data->format[data->it] == 'l' && data->it++)
+		{
+			data->length_flag[i++] = 'l';
+			data->length_flag[i] = '\0';
+		}
+		else if (data->format[data->it] == 'h' && data->it++)
+		{
+			data->length_flag[i++] = 'h';
+			data->length_flag[i] = '\0';
 		}
 	}
 	return (data);

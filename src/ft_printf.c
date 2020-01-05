@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:11:19 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/05 19:49:15 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_initialize(t_printf *data)
 	data->hast_flag = 0;
 	data->plus_flag = 0;
 	data->minus_flag = 0;
+	data->space_flag = 0;
 	data->asterisk_flag = 0;
 	data->width = 0;
 	data->length = 0;
@@ -33,6 +34,8 @@ void	ft_clear(t_printf *data)
 {
 	data->width = 0;
 	data->precision = -1;
+	data->length_flag[0] = '\0';
+	data->length_flag[1] = '\0';
 }
 
 void	handle_flags(t_printf *data)
@@ -61,6 +64,7 @@ int		procesate(t_printf *data)
 	check_flags(data);
 	check_width(data);
 	check_precision(data);
+	check_length(data);
 	handle_flags(data);
 	return (data->length);
 }
