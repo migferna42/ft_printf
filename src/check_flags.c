@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:08:21 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/05 03:29:12 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_printf	*check_flags(t_printf *data)
 	{
 	if (data->format[data->it] == '0' && data->it++)
 		data->zero_flag = 1;
+	else if (data->format[data->it] == '+' && data->it++)
+		data->plus_flag = 1;
 	else if (data->format[data->it] == '-' && data->it++)
 		data->minus_flag = 1;
 	else if (data->format[data->it] == '*' && data->it++)

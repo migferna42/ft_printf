@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 00:47:21 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/05 03:42:25 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ t_printf	*ft_print_integer(t_printf *data)
 	if (data->zero_flag == 1  && data->precision == -1 && data->minus_flag == 0)
 	{
 		data->precision = data->width;
-		if (num < 0)
+		if (num < 0 || data->plus_flag == 1)
 			data->precision--;
 	}
 	spaces = length;
 	if ( length <= data->precision && data->precision > -1 )
 		spaces = data->precision;
-	if (ft_isnegative(num))
+	if (ft_isnegative(num) || data->plus_flag)
 		spaces++;
 	data->length += (data->width < spaces) ? spaces : data->width;
 	if (data->minus_flag == 0)
@@ -62,6 +62,8 @@ t_printf	*ft_print_integer(t_printf *data)
 		num *= -1;
 		write(1, "-", 1);
 	}
+	else if (data->plus_flag == 1)
+		write(1, "+", 1);
 	ft_display(data, '0', data->precision - length, 0);
 	ft_putnbr_fd(num, 1);
 	if (data->minus_flag == 1)
