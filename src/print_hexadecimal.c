@@ -6,14 +6,14 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:39:35 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:34:34 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/06 01:34:45 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	ft_nbrlen(unsigned int number, int base)
+static int	ft_nbrlen(long int number, int base)
 {
 	int length;
 	(void) base;
@@ -25,7 +25,24 @@ static int	ft_nbrlen(unsigned int number, int base)
 	return (length);
 }
 
-static char	*ft_itoa_base(unsigned int number, int base, char c)
+static long int get_length(t_printf *data)
+{
+	long int num;
+
+	if (ft_strcmp(data->length_flag, "hh") == 0)
+		num = (unsigned char)(va_arg(data->args, unsigned int));
+	else if (ft_strcmp(data->length_flag, "l") == 0)
+		num = (unsigned long)(va_arg(data->args, unsigned long int));
+	else if (ft_strcmp(data->length_flag, "h") == 0)
+		num = (unsigned short)(va_arg(data->args, unsigned int));
+	else if (ft_strcmp(data->length_flag, "ll") == 0)
+		num = (unsigned long long)(va_arg(data->args, unsigned long long int));
+	else
+		num = (unsigned int)va_arg(data->args, unsigned int);
+	return (num);
+}
+
+static char	*ft_itoa_base(long int number, int base, char c)
 {
 	char *str;
 	int length;
@@ -51,11 +68,11 @@ static char	*ft_itoa_base(unsigned int number, int base, char c)
 
 t_printf *ft_print_hexadecimal(t_printf *data, char c){
 	char	*str;
-	unsigned long num;
+	long int num;
 	int width;
 	int spaces;
 
-	num = va_arg(data->args, unsigned long);
+	num = get_length(data);
 	if (data->zero_flag == 1 && data->precision == -1 && data->minus_flag == 0)
 		data->precision = data->width;
 	if (num == 0 && data->precision == 0)

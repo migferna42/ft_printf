@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 16:50:34 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/06 00:19:26 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/06 01:54:26 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static long int get_length(t_printf *data)
 	return (num);
 }
 
-static char	ft_sign(t_printf *data, long int number)
+static char	ft_sign(t_printf *data, int is_negative)
 {
-	if (number < 0)
+	if (is_negative)
 		return ('-');
 	if (data->plus_flag == 1)
 		return ('+');
@@ -64,9 +64,11 @@ t_printf	*ft_print_integer(t_printf *data)
 	int length;
 	int spaces;
 	char sign;
+	int is_negative;
 
 	num = get_length(data);
-	sign = ft_sign(data, num);
+	is_negative = (num < 0) ? 1 : 0;
+	sign = ft_sign(data, is_negative);
 	num *= (ft_isnegative(num) ? -1 : 1);
 	length = ft_numlen(num);
 	if (num == 0 && data->precision == 0)
@@ -77,7 +79,7 @@ t_printf	*ft_print_integer(t_printf *data)
 	if (data->zero_flag == 1  && data->precision == -1 && data->minus_flag == 0)
 	{
 		data->precision = data->width;
-		if (num < 0 || data->plus_flag == 1)
+		if (is_negative || data->plus_flag == 1)
 			data->precision--;
 	}
 	spaces = length;
