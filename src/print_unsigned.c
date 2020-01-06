@@ -6,14 +6,14 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 15:06:40 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:29:31 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/06 01:27:38 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static int		ft_get_length(unsigned int number)
+static int		ft_get_length(long int number)
 {
 	int length;
 
@@ -25,20 +25,31 @@ static int		ft_get_length(unsigned int number)
 	return (length);
 }
 
-void	ft_putnbruint(unsigned int number, int fd)
+static long int get_length(t_printf *data)
 {
-	if (number > 9)
-		ft_putnbruint(number / 10, fd);
-	ft_putchar_fd((number % 10) + '0', fd);
+	long int num;
+
+	if (ft_strcmp(data->length_flag, "hh") == 0)
+		num = (unsigned char)(va_arg(data->args, unsigned int));
+	else if (ft_strcmp(data->length_flag, "l") == 0)
+		num = (unsigned long)(va_arg(data->args, unsigned long int));
+	else if (ft_strcmp(data->length_flag, "h") == 0)
+		num = (unsigned short)(va_arg(data->args, unsigned int));
+	else if (ft_strcmp(data->length_flag, "ll") == 0)
+		num = (unsigned long long)(va_arg(data->args, unsigned long long int));
+	else
+		num = (unsigned int)va_arg(data->args, unsigned int);
+	return (num);
 }
+
 
 t_printf		*ft_print_unsigned(t_printf *data)
 {
-	unsigned int num;
+	long int num;
 	int length;
 	int spaces;
 
-	num = (unsigned int)va_arg(data->args, unsigned int);
+	num = get_length(data);
 	length = ft_get_length(num);
 	if (num == 0 && data->precision == 0)
 	{
@@ -54,7 +65,7 @@ t_printf		*ft_print_unsigned(t_printf *data)
 	if (data->minus_flag == 0)
 		ft_display(data, ' ', data->width - spaces, 0);
 	ft_display(data, '0', data->precision - length, 0);
-	ft_putnbruint(num, 1);
+	ft_putnbrlong_fd(num, 1);
 	if (data->minus_flag == 1)
 		ft_display(data, ' ', data->width - spaces, 0);
 	return (data);
