@@ -6,7 +6,7 @@
 #    By: migferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 16:26:57 by migferna          #+#    #+#              #
-#    Updated: 2019/11/19 12:11:59 by migferna         ###   ########.fr        #
+#    Updated: 2020/01/07 19:39:26 by migferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS		= ft_atoi.c					\
 			  ft_putendl_fd.c			\
 			  ft_putnbr_fd.c			\
 			  ft_putstr_fd.c			\
+			  ft_putnbrlong_fd.c		\
 			  ft_split.c				\
 			  ft_strchr.c				\
 			  ft_strdup.c				\
@@ -40,6 +41,7 @@ SRCS		= ft_atoi.c					\
 			  ft_strlen.c				\
 			  ft_strmapi.c				\
 			  ft_strncmp.c				\
+			  ft_strcmp.c				\
 			  ft_strnstr.c				\
 			  ft_strrchr.c				\
 			  ft_strtrim.c				\
