@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:39:40 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/02 17:42:01 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:54:38 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_calculate(t_printf *data, char *s)
 		cpy = ft_strdup("");
 		ft_strlcpy(cpy, s, data->precision + 1);
 		return (cpy);
-	} 
+	}
 	else if (data->precision == -1 && s)
 		return (ft_strdup(s));
 	else if (data->precision == -1 && !s)
@@ -40,7 +40,7 @@ static char	*ft_calculate(t_printf *data, char *s)
 t_printf	*ft_print_string(t_printf *data)
 {
 	char	*s;
-	int len;
+	int		len;
 
 	s = va_arg(data->args, char *);
 	s = ft_calculate(data, s);
@@ -54,7 +54,7 @@ t_printf	*ft_print_string(t_printf *data)
 			ft_display(data, ' ', data->width - len, 1);
 	}
 	ft_putstr_fd(s, 1);
-	if(data->minus_flag == 1)
+	if (data->minus_flag == 1)
 		ft_display(data, ' ', data->width - len, 1);
 	free(s);
 	return (data);

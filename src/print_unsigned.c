@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 15:06:40 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/06 01:27:38 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/07 17:05:29 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		ft_get_length(long int number)
 	return (length);
 }
 
-static long int get_length(t_printf *data)
+static long int	get_length(t_printf *data)
 {
 	long int num;
 
@@ -42,12 +42,11 @@ static long int get_length(t_printf *data)
 	return (num);
 }
 
-
 t_printf		*ft_print_unsigned(t_printf *data)
 {
-	long int num;
-	int length;
-	int spaces;
+	long int	num;
+	int			length;
+	int			spaces;
 
 	num = get_length(data);
 	length = ft_get_length(num);

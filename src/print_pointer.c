@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 13:15:19 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/04 01:28:02 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/07 18:44:17 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static char	*ft_itoa_base(unsigned long number, int base)
 {
 	char	*str;
 	int		length;
-	char	*base_string = "0123456789abcdef";
+	char	*base_string;
 
+	base_string = "0123456789abcdef";
 	if (number == 0)
 		return (ft_strdup("0"));
 	length = ft_length_number(number, base);
@@ -44,16 +45,14 @@ static char	*ft_itoa_base(unsigned long number, int base)
 	return (str);
 }
 
-
-t_printf *ft_print_pointer(t_printf *data)
+t_printf	*ft_print_pointer(t_printf *data)
 {
 	unsigned long	num;
 	char			*str;
 	int				spaces;
 
-	num = (unsigned long)va_arg(data->args, unsigned long);
+	num = (unsigned long int)va_arg(data->args, unsigned long int);
 	str = ft_itoa_base(num, 16);
-
 	if (!str)
 		return (NULL);
 	if (num == 0 && data->precision == 0)

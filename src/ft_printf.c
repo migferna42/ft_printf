@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/05 19:49:15 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/07 17:48:35 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_initialize(t_printf *data)
 	data->width = 0;
 	data->length = 0;
 	data->precision_flag = 0;
-	//data->precision = -1;
 	data->it = 0;
 	data->copy = (char *)data->format;
 	data->treat = (char *)data->format;
@@ -71,7 +70,7 @@ int		procesate(t_printf *data)
 
 int		parse(t_printf *data)
 {
-	if (data->it == (int)ft_strlen(data->format) - 1)
+	if (ft_strcmp(data->copy, "%") == 0)
 		return (0);
 	while (data->copy[data->it] != '\0')
 	{
@@ -107,12 +106,3 @@ int		ft_printf(const char *format, ...)
 	free(data);
 	return (data->length);
 }
-
-/*int main(void)
-{
-	char a;
-	//printf("%.03s", NULL);
-	ft_printf("%p", &a);
-
-	return (0);
-}*/

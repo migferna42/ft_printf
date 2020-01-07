@@ -6,18 +6,16 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:39:35 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/06 01:34:45 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/07 17:12:29 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	ft_nbrlen(long int number, int base)
+static int		ft_nbrlen(long int number, int base)
 {
 	int length;
-	(void) base;
-	(void) number;
 
 	length = 1;
 	while ((number /= base) > 0)
@@ -25,7 +23,7 @@ static int	ft_nbrlen(long int number, int base)
 	return (length);
 }
 
-static long int get_length(t_printf *data)
+static long int	get_length(t_printf *data)
 {
 	long int num;
 
@@ -42,14 +40,16 @@ static long int get_length(t_printf *data)
 	return (num);
 }
 
-static char	*ft_itoa_base(long int number, int base, char c)
+static char		*ft_itoa_base(long int number, int base, char c)
 {
-	char *str;
-	int length;
-	char	*base_string_minus = "0123456789abcdef";
-	char	*base_string_mayus = "0123456789ABCDEF";
+	char	*str;
+	int		length;
+	char	*base_string_minus;
+	char	*base_string_mayus;
 	char	*base_selected;
-	
+
+	base_string_minus = "0123456789abcdef";
+	base_string_mayus = "0123456789ABCDEF";
 	if (number == 0)
 		return (ft_strdup("0"));
 	length = ft_nbrlen(number, base);
@@ -66,11 +66,12 @@ static char	*ft_itoa_base(long int number, int base, char c)
 	return (str);
 }
 
-t_printf *ft_print_hexadecimal(t_printf *data, char c){
-	char	*str;
-	long int num;
-	int width;
-	int spaces;
+t_printf		*ft_print_hexadecimal(t_printf *data, char c)
+{
+	char		*str;
+	long int	num;
+	int			width;
+	int			spaces;
 
 	num = get_length(data);
 	if (data->zero_flag == 1 && data->precision == -1 && data->minus_flag == 0)
@@ -83,7 +84,8 @@ t_printf *ft_print_hexadecimal(t_printf *data, char c){
 	if (!(str = ft_itoa_base(num, 16, c)))
 		return (NULL);
 	width = ft_strlen(str);
-	spaces = (data->precision > 0 && data->precision >= width) ? data->precision : width;
+	spaces = (data->precision > 0 && data->precision >= width)
+		? data->precision : width;
 	data->length += (data->width < spaces) ? spaces : data->width;
 	if (data->minus_flag == 0)
 		ft_display(data, ' ', data->width - spaces, 0);
