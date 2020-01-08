@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 17:47:09 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/07 17:48:35 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/08 10:17:43 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,6 @@ void	ft_clear(t_printf *data)
 	data->precision = -1;
 	data->length_flag[0] = '\0';
 	data->length_flag[1] = '\0';
-}
-
-void	handle_flags(t_printf *data)
-{
-	if (data->format[data->it] == 'c')
-		ft_print_char(data);
-	else if (data->format[data->it] == 's')
-		ft_print_string(data);
-	else if (data->format[data->it] == 'd' || data->format[data->it] == 'i')
-		ft_print_integer(data);
-	else if (data->format[data->it] == 'u')
-		ft_print_unsigned(data);
-	else if (data->format[data->it] == 'p')
-		ft_print_pointer(data);
-	else if (data->format[data->it] == 'x')
-		ft_print_hexadecimal(data, 'x');
-	else if (data->format[data->it] == 'X')
-		ft_print_hexadecimal(data, 'X');
-	else if (data->format[data->it] == '%')
-		ft_print_percent(data);
 }
 
 int		procesate(t_printf *data)

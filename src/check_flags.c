@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:25:08 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/07 16:14:09 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/08 10:18:19 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,24 @@ t_printf	*check_length(t_printf *data)
 		}
 	}
 	return (data);
+}
+
+void		handle_flags(t_printf *data)
+{
+	if (data->format[data->it] == 'c')
+		ft_print_char(data);
+	else if (data->format[data->it] == 's')
+		ft_print_string(data);
+	else if (data->format[data->it] == 'd' || data->format[data->it] == 'i')
+		ft_print_integer(data);
+	else if (data->format[data->it] == 'u')
+		ft_print_unsigned(data);
+	else if (data->format[data->it] == 'p')
+		ft_print_pointer(data);
+	else if (data->format[data->it] == 'x')
+		ft_print_hexadecimal(data, 'x');
+	else if (data->format[data->it] == 'X')
+		ft_print_hexadecimal(data, 'X');
+	else if (data->format[data->it] == '%')
+		ft_print_percent(data);
 }

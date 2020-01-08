@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:39:35 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/07 17:12:29 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/08 10:15:29 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,28 @@ static char		*ft_itoa_base(long int number, int base, char c)
 	return (str);
 }
 
+static t_printf	*print(t_printf *data, char *str)
+{
+	int			width;
+	int			spaces;
+
+	width = ft_strlen(str);
+	spaces = (data->precision > 0 && data->precision >= width)
+		? data->precision : width;
+	data->length += (data->width < spaces) ? spaces : data->width;
+	if (data->minus_flag == 0)
+		ft_display(data, ' ', data->width - spaces, 0);
+	ft_display(data, '0', data->precision - width, 0);
+	ft_putstr_fd(str, 1);
+	if (data->minus_flag == 1)
+		ft_display(data, ' ', data->width - spaces, 0);
+	return (data);
+}
+
 t_printf		*ft_print_hexadecimal(t_printf *data, char c)
 {
 	char		*str;
 	long int	num;
-	int			width;
-	int			spaces;
 
 	num = get_length(data);
 	if (data->zero_flag == 1 && data->precision == -1 && data->minus_flag == 0)
@@ -83,16 +99,7 @@ t_printf		*ft_print_hexadecimal(t_printf *data, char c)
 	}
 	if (!(str = ft_itoa_base(num, 16, c)))
 		return (NULL);
-	width = ft_strlen(str);
-	spaces = (data->precision > 0 && data->precision >= width)
-		? data->precision : width;
-	data->length += (data->width < spaces) ? spaces : data->width;
-	if (data->minus_flag == 0)
-		ft_display(data, ' ', data->width - spaces, 0);
-	ft_display(data, '0', data->precision - width, 0);
-	ft_putstr_fd(str, 1);
-	if (data->minus_flag == 1)
-		ft_display(data, ' ', data->width - spaces, 0);
+	print(data, str);
 	free(str);
 	return (data);
 }

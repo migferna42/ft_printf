@@ -6,7 +6,7 @@
 /*   By: migferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 13:36:42 by migferna          #+#    #+#             */
-/*   Updated: 2020/01/05 19:48:51 by migferna         ###   ########.fr       */
+/*   Updated: 2020/01/08 10:18:57 by migferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_printf	*check_flags(t_printf *data);
 t_printf	*check_width(t_printf *data);
 t_printf	*check_length(t_printf *data);
 t_printf	*check_precision(t_printf *data);
+void		handle_flags(t_printf *data);
 t_printf	*ft_print_integer(t_printf *data);
 t_printf	*ft_print_string(t_printf *data);
 t_printf	*ft_print_char(t_printf *data);
